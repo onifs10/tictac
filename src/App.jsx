@@ -21,17 +21,22 @@ const TickTack = () => {
       setPlayer(1)
     }
   }
-  return <div className='tic_tac'>
-    <Square player={player} played={played} id={1}/>
-    <Square player={player} played={played} id={2}/>
-    <Square player={player} played={played} id={3}/>
-    <Square player={player} played={played} id={4}/>
-    <Square player={player} played={played} id={5}/>
-    <Square player={player} played={played} id={6}/>
-    <Square player={player} played={played} id={7}/>
-    <Square player={player} played={played} id={8}/>
-    <Square player={player} played={played} id={9}/>
-  </div>
+  return <>
+      <div className='tic_tac'>
+        <Square player={player} played={played} id={1}/>
+        <Square player={player} played={played} id={2}/>
+        <Square player={player} played={played} id={3}/>
+        <Square player={player} played={played} id={4}/>
+        <Square player={player} played={played} id={5}/>
+        <Square player={player} played={played} id={6}/>
+        <Square player={player} played={played} id={7}/>
+        <Square player={player} played={played} id={8}/>
+        <Square player={player} played={played} id={9}/>
+    </div>
+    <div className="player">
+      Player : {player}
+    </div>
+  </> 
 }
 
 const Square = ({id, player, played}) => {
