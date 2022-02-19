@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap');
+
+.App {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  .title{
+    font-size: 1.2rem;
+    font-weight: 600; 
+    padding-bottom: 1rem;
+    text-decoration: underline;
+    color: green;
+  }
+  .tic_tac{
+    width: 50vmin;
+    height: 50vmin;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    border: 1px solid lightgreen;
+    .square{
+      background: none;
+      border: 1px solid lightgreen;
+      cursor: pointer;
+      transition: all 200ms ease-in-out;
+      text-align: center;
+      font-size: 5vmin;
+      font-weight: 600;
+      font-family: 'Happy Monkey';
+      &.O{
+        color: red;
+      }
+      &.X{
+        color: blue;
+      }
+      &:hover{
+        transform: scale(1.005);
+        border: 1.5px solid lightgreen;
+        background-color: lightgreen;
+      }
+    }
+  }
+}
