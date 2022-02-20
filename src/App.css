@@ -58,10 +58,41 @@
 }
 
 .App .tic_tac .square:hover {
+  background-color: pink;
+}
+
+.App .tic_tac .square.un_ticked {
+  position: relative;
+}
+
+.App .tic_tac .square.un_ticked:hover {
   -webkit-transform: scale(1.005);
           transform: scale(1.005);
   border: 1.5px solid lightgreen;
   background-color: lightgreen;
+}
+
+.App .tic_tac .square.un_ticked::after {
+  content: var(--placeholder, "");
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  font-size: 5vmin;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .App .player {

@@ -22,7 +22,9 @@ const TickTack = () => {
     }
   }
   return <>
-      <div className='tic_tac'>
+    <div className='tic_tac'
+      style={{"--placeholder" : player === 1 ? `"X"` : `"O"`}}
+    >
         <Square player={player} played={played} id={1}/>
         <Square player={player} played={played} id={2}/>
         <Square player={player} played={played} id={3}/>
@@ -44,18 +46,21 @@ const Square = ({id, player, played}) => {
   const [ticked, setTicked] = useState(false);
 
   return (
-    <button className={`square ${tick}` }onClick={() => {
-      if (ticked) {
-        return
-      }
-      if (player == 1) {
-        setTick("X")     
-      } else {
-        setTick("O")
-      }
-      setTicked(v => !v);
-      played?.()
-    }}>
+    <button
+      className={`square ${tick} ${!ticked ? "un_ticked" : "" }`}
+      onClick={() => {
+        if (ticked) {
+          return
+        }
+        if (player == 1) {
+          setTick("X")     
+        } else {
+          setTick("O")
+        }
+        setTicked(v => !v);
+        played?.()
+      }}
+    >
       {ticked && tick}
     </button>
   )

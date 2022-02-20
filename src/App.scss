@@ -37,10 +37,35 @@
         color: blue;
       }
       &:hover{
-        transform: scale(1.005);
-        border: 1.5px solid lightgreen;
-        background-color: lightgreen;
+        background-color: pink;
       }
+      &.un_ticked{
+        &:hover{
+          transform: scale(1.005);
+          border: 1.5px solid lightgreen;
+          background-color: lightgreen;
+          
+        }
+        position: relative;
+        &::after{
+          content: var(--placeholder,'');
+          position: absolute;
+          top: 0;
+          left: 0;
+          // opacity: 0;
+          width: 100%;
+          height: 100%;
+          color: white;
+          transition: all 200ms ease-in-out;
+          // text-align: center;
+          font-size: 5vmin;
+          z-index: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
     }
   }
   .player{
@@ -48,6 +73,5 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: green; 
-
   }
 }
