@@ -57,7 +57,7 @@
   color: blue;
 }
 
-.App .tic_tac .square:hover {
+.App .tic_tac .square:hover, .App .tic_tac .square:focus {
   background-color: pink;
 }
 
@@ -65,7 +65,7 @@
   position: relative;
 }
 
-.App .tic_tac .square.un_ticked:hover {
+.App .tic_tac .square.un_ticked:hover, .App .tic_tac .square.un_ticked:focus {
   -webkit-transform: scale(1.005);
           transform: scale(1.005);
   border: 1.5px solid lightgreen;

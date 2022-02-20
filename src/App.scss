@@ -36,11 +36,11 @@
       &.X{
         color: blue;
       }
-      &:hover{
+      &:hover, &:focus{
         background-color: pink;
       }
       &.un_ticked{
-        &:hover{
+        &:hover, &:focus{
           transform: scale(1.005);
           border: 1.5px solid lightgreen;
           background-color: lightgreen;
