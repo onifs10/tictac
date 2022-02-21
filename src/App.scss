@@ -18,18 +18,33 @@
     width: 50vmin;
     height: 50vmin;
     display: grid;
+    padding: 1rem;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3,1fr);
-    border: 1px solid lightgreen;
+    // border: 1px solid lightgreen;
     .square{
       background: none;
-      border: 1px solid lightgreen;
+      
       cursor: pointer;
       transition: all 200ms ease-in-out;
       text-align: center;
+      border: none;
+      // border: 1px solid lightgreen;
       font-size: 5vmin;
       font-weight: 600;
       font-family: 'Happy Monkey';
+      &:nth-child(-n + 6){
+        // background-color: red;  
+        border-bottom: 3px solid lightgreen;
+      }
+      &:nth-child(3n + 3){
+        border-left: 3px solid lightgreen;
+      }
+      &:nth-child(3n + 1){
+        border-right: 3px solid lightgreen;
+      }
+      
+
       &.O{
         color: red;
       }
@@ -37,15 +52,9 @@
         color: blue;
       }
       &:hover, &:focus{
-        background-color: pink;
+        // background-color: pink;
       }
       &.un_ticked{
-        &:hover, &:focus{
-          transform: scale(1.005);
-          border: 1.5px solid lightgreen;
-          background-color: lightgreen;
-          
-        }
         position: relative;
         &::after{
           content: var(--placeholder,'');
@@ -55,7 +64,7 @@
           // opacity: 0;
           width: 100%;
           height: 100%;
-          color: white;
+          color: lightgreen;
           transition: all 200ms ease-in-out;
           // text-align: center;
           font-size: 5vmin;
@@ -63,9 +72,16 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          opacity: 0;
+        }
+        &:hover, &:focus{
+          &::after{
+            opacity: 1;
+            
+          }
         }
       }
-
+        
     }
   }
   .player{

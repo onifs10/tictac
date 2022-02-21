@@ -30,23 +30,35 @@
   height: 50vmin;
   display: -ms-grid;
   display: grid;
+  padding: 1rem;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
   -ms-grid-rows: (1fr)[3];
       grid-template-rows: repeat(3, 1fr);
-  border: 1px solid lightgreen;
 }
 
 .App .tic_tac .square {
   background: none;
-  border: 1px solid lightgreen;
   cursor: pointer;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   text-align: center;
+  border: none;
   font-size: 5vmin;
   font-weight: 600;
   font-family: 'Happy Monkey';
+}
+
+.App .tic_tac .square:nth-child(-n + 6) {
+  border-bottom: 3px solid lightgreen;
+}
+
+.App .tic_tac .square:nth-child(3n + 3) {
+  border-left: 3px solid lightgreen;
+}
+
+.App .tic_tac .square:nth-child(3n + 1) {
+  border-right: 3px solid lightgreen;
 }
 
 .App .tic_tac .square.O {
@@ -57,19 +69,8 @@
   color: blue;
 }
 
-.App .tic_tac .square:hover, .App .tic_tac .square:focus {
-  background-color: pink;
-}
-
 .App .tic_tac .square.un_ticked {
   position: relative;
-}
-
-.App .tic_tac .square.un_ticked:hover, .App .tic_tac .square.un_ticked:focus {
-  -webkit-transform: scale(1.005);
-          transform: scale(1.005);
-  border: 1.5px solid lightgreen;
-  background-color: lightgreen;
 }
 
 .App .tic_tac .square.un_ticked::after {
@@ -79,7 +80,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  color: white;
+  color: lightgreen;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   font-size: 5vmin;
@@ -93,6 +94,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  opacity: 0;
+}
+
+.App .tic_tac .square.un_ticked:hover::after, .App .tic_tac .square.un_ticked:focus::after {
+  opacity: 1;
 }
 
 .App .player {
