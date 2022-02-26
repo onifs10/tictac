@@ -13,8 +13,15 @@ function App() {
 
 const TickTack = () => {
   const [player, setPlayer] = useState(1);
-
-  const played = () => {
+  const [gameState, setGameState] = useState({});
+  
+  const played = (id, string) => {
+    
+    setGameState(v => {
+      v[id] = string 
+      return v
+    })
+    
     if (player === 1) {
       setPlayer(2)
     } else {
@@ -53,12 +60,13 @@ const Square = ({id, player, played}) => {
           return
         }
         if (player == 1) {
-          setTick("X")     
+          setTick("X")
+          played?.(id,"X")
         } else {
           setTick("O")
+          played?.(id,"O")
         }
         setTicked(v => !v);
-        played?.()
       }}
     >
       {ticked && tick}
