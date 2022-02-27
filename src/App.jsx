@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { evaluate, PLAYER, OPPONENT, fireWorks, isMovesLeft } from "./gameLogic";
 import './App.css'
+
 
 function App() {
 
@@ -13,14 +15,38 @@ function App() {
 
 const TickTack = () => {
   const [player, setPlayer] = useState(1);
-  const [gameState, setGameState] = useState({});
+  const [done, setDone] = useState(false);
+  const [gameResult, setResult] = useState("")
+  const [gameState, setGameState] = useState([
+    ["","",""],
+    ["","",""],
+    ["","",""]
+  ]
+  );
   
   const played = (id, string) => {
+    const [row, col] = id.split('-').map(v => Number(v))    
     
     setGameState(v => {
-      v[id] = string 
+      v[row][col] = string
       return v
     })
+
+    const winState = evaluate(gameState);
+    if (winState > 0) {
+      setResult('player one won')
+      setDone(v => !v)
+      fireWorks()
+    } else if (winState < 0) {
+      setResult('player two won')
+      setDone(v => !v)
+      fireWorks()
+    } else {
+      if (!isMovesLeft(gameState)) {
+        setResult('Draw')
+        setDone(v => !v)
+      }
+    }
     
     if (player === 1) {
       setPlayer(2)
@@ -28,30 +54,55 @@ const TickTack = () => {
       setPlayer(1)
     }
   }
+
   return <>
     <div className='tic_tac'
-      style={{"--placeholder" : player === 1 ? `"X"` : `"O"`}}
+      style={{"--placeholder" : player === 1 ? `"${PLAYER}"` : `"${OPPONENT}"`}}
     >
-        <Square player={player} played={played} id={1}/>
-        <Square player={player} played={played} id={2}/>
-        <Square player={player} played={played} id={3}/>
-        <Square player={player} played={played} id={4}/>
-        <Square player={player} played={played} id={5}/>
-        <Square player={player} played={played} id={6}/>
-        <Square player={player} played={played} id={7}/>
-        <Square player={player} played={played} id={8}/>
-        <Square player={player} played={played} id={9}/>
+      {
+        gameState.map( (row, rowIndex )=> (
+          row.map((col ,colIndex)=> (
+            <Square
+              player={player}
+              tick={gameState[rowIndex][colIndex]}
+              played={played}
+              id={`${rowIndex}-${colIndex}`}
+              key={`${rowIndex}-${colIndex}`} />)) 
+        ))
+      }
     </div>
     <div className="player">
       Player : {player}
     </div>
+    <div className={`board ${done && 'show'}`}>
+      <div className={`winner`}>
+        {gameResult}
+      </div>
+      <button className="rst_btn" onClick={() => {
+        setGameState([
+              ["","",""],
+              ["","",""],
+              ["","",""]
+        ])
+        setDone(v => !v)
+        setResult("")
+        setPlayer(1)
+          }}>  
+            Restart
+          </button>
+    </div>
   </> 
 }
 
-const Square = ({id, player, played}) => {
-  const [tick, setTick] = useState('')
+const Square = ({id, player, played,tick}) => {
   const [ticked, setTicked] = useState(false);
-
+  useEffect(() => {
+    if (tick) {
+        setTicked(v => !v);
+    } else {
+        setTicked(false);
+    }
+  },[tick])
   return (
     <button
       className={`square ${tick} ${!ticked ? "un_ticked" : "" }`}
@@ -60,13 +111,10 @@ const Square = ({id, player, played}) => {
           return
         }
         if (player == 1) {
-          setTick("X")
-          played?.(id,"X")
+          played?.(id, PLAYER)
         } else {
-          setTick("O")
-          played?.(id,"O")
+          played?.(id, OPPONENT)
         }
-        setTicked(v => !v);
       }}
     >
       {ticked && tick}

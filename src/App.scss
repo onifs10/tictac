@@ -90,4 +90,53 @@
     font-weight: bold;
     color: green; 
   }
+  .board{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    background-color: rgba(#C0C0C0,1);
+    @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){
+      background-color: rgba(#C0C0C0,.3);
+      backdrop-filter:  saturate(180%) blur(10px);
+    }
+    @supports ( -moz-appearance:none ){
+      background-color: rgba(#C0C0C0,.8);
+    }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 500ms cubic-bezier(.94,1.45,.04,1.52);
+    transform: scale(0);
+    .winner{
+      font-family: "Happy Monkey";
+      padding: 10vmin;
+      border-radius: 11px;
+      background-color: white;
+      font-size: 5vmin;
+      color: green;
+    }
+    .rst_btn{
+      padding: 1rem;
+      border-radius: 11px;
+      font-size: 2vmin;
+      margin-top: 1rem;
+      background-color: green;
+      color: white;
+      font-family: "Happy Monkey";
+      font-weight: bold;
+      border: none;
+      transition: all 100ms cubic-bezier(.15,1.07,.92,.29);
+      &:hover{
+        color: green;
+        background-color: white;
+      }
+    }
+    &.show{
+      transform: scale(1);
+    }
+  }
 }
