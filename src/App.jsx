@@ -16,6 +16,7 @@ function App() {
 const TickTack = () => {
   const [player, setPlayer] = useState(1);
   const [done, setDone] = useState(false);
+  const [fireworks, setFireWorks] = useState({});
   const [gameResult, setResult] = useState("")
   const [gameState, setGameState] = useState([
     ["","",""],
@@ -36,11 +37,11 @@ const TickTack = () => {
     if (winState > 0) {
       setResult('player one won')
       setDone(v => !v)
-      fireWorks()
+      setFireWorks(fireWorks())
     } else if (winState < 0) {
       setResult('player two won')
       setDone(v => !v)
-      fireWorks()
+      setFireWorks(fireWorks())
     } else {
       if (!isMovesLeft(gameState)) {
         setResult('Draw')
@@ -87,6 +88,7 @@ const TickTack = () => {
         setDone(v => !v)
         setResult("")
         setPlayer(1)
+        fireworks.stop?.()
           }}>  
             Restart
           </button>
