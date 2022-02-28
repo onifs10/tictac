@@ -89,6 +89,7 @@ const TickTack = () => {
         setResult("")
         setPlayer(1)
         fireworks.stop?.()
+        setFireWorks({})
           }}>  
             Restart
           </button>

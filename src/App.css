@@ -129,8 +129,8 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  -webkit-transition: all 500ms cubic-bezier(0.94, 1.45, 0.04, 1.52);
-  transition: all 500ms cubic-bezier(0.94, 1.45, 0.04, 1.52);
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
   -webkit-transform: scale(0);
           transform: scale(0);
 }
