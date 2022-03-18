@@ -171,9 +171,10 @@ export function minimax(board, depth, isMax)
  
 // This will return the best possible
 // move for the PLAYER
-export function findBestMove(board)
+export function findBestMove(INboard)
 {
-    let bestVal = -1000;
+    const board = [...INboard.map(v => [...v])]
+    let bestVal = 1000;
     let bestMove = new Move();
     bestMove.row = -1;
     bestMove.col = -1;
@@ -192,11 +193,11 @@ export function findBestMove(board)
             {
                  
                 // Make the move
-                board[i][j] = PLAYER;
+                board[i][j] = OPPONENT;
   
                 // compute evaluation function
                 // for this move.
-                let moveVal = minimax(board, 0, false);
+                let moveVal = minimax(board, 0, true);
   
                 // Undo the move
                 board[i][j] = '';
@@ -204,7 +205,7 @@ export function findBestMove(board)
                 // If the value of the current move
                 // is more than the best value, then
                 // update best
-                if (moveVal > bestVal)
+                if (moveVal < bestVal)
                 {
                     bestMove.row = i;
                     bestMove.col = j;

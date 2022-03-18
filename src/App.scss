@@ -136,4 +136,56 @@
       transform: scale(1);
     }
   }
+  section#gstart{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    z-index: 200;
+    transition: all 500ms ease-in-out; 
+    transform: scale(0);
+    &.show{
+        transform :scale(1);
+    }
+    .modal{
+        display:flex;
+        background-color: white;
+        justify-content:center;
+        align-items:center;
+        min-height: 50vmin;
+        min-width: 50vmin;
+        flex-flow: column;
+        border-radius: 11px;
+        border: 1px solid lightgreen;
+        .prompt{
+            color:green;
+            font-size: 3vmin;
+            font-weight: bold;
+        }
+        .actions{
+            display: flex;
+            width: 90%;
+            margin: 0 auto;
+            justify-content: space-between;
+            margin-top:2rem;
+            button{
+                cursor:pointer;
+                font-size:2vmin;
+                flex: 0 0 45%;
+                min-height: 50px;
+                background-color: lightgreen;
+                border-radius: 5px;
+                border: none;
+                transition: all 200ms ease-in-out;
+                &:hover{
+                    background-color: green;
+                    color: white;
+
+                }
+            }
+        }
+    }    
+  }
 }
