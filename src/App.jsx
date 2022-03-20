@@ -72,7 +72,7 @@ const TickTack = ({started, endGame, computer}) => {
         })
         const winState = evaluate(gameState);
         if (winState > 0) {
-          setResult('player one won')
+          setResult(computer ? 'you won' : 'player one won')
           setDone(v => !v)
           setFireWorks(fireWorks())
           return
