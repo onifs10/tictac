@@ -178,7 +178,8 @@ export function findBestMove(INboard)
     let bestMove = new Move();
     bestMove.row = -1;
     bestMove.col = -1;
-  
+
+    const moves = [];
     // Traverse all cells, evaluate
     // minimax function for all empty
     // cells. And return the cell
@@ -201,7 +202,10 @@ export function findBestMove(INboard)
   
                 // Undo the move
                 board[i][j] = '';
-  
+                const moveData = {} 
+                moveData['id'] = `${i}-${j}` 
+                moveData['value'] = moveVal 
+                moves.push(moveData)
                 // If the value of the current move
                 // is more than the best value, then
                 // update best
@@ -213,6 +217,19 @@ export function findBestMove(INboard)
                 }
             }
         }
+    }
+
+    console.table(moves);
+    let selectedId  = undefined;
+
+    if(moves.length < 6){
+        console.log('random')
+        selectedId =  parseInt(Math.random() * (moves.length - 1))
+    }
+    if(selectedId){
+        const [i, j] = moves[selectedId].id.split('-').map(v => Number(v));
+        bestMove.row = i;                                                              
+        bestMove.col = j; 
     }
     
     return bestMove;
